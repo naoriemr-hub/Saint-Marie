@@ -1,1 +1,291 @@
-<!DOCTYPE html><html><head><meta charset="utf-8"><title>Dashboard Sainte-Marie</title><link rel="stylesheet" href="assets/css/style.css"></head><body><h1>Dashboard Tourisme Sainte-Marie</h1><div id="score">Score: 78/100</div><canvas id="chart"></canvas><script src="https://cdn.jsdelivr.net/npm/chart.js"></script><script src="assets/js/app.js"></script></body></html>
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard Sainte-Marie</title>
+
+    assets/css/main.css
+
+    https://cdn.jsdelivr.net/npm/chart.jsscript>
+
+    <style>
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+        }
+
+        body{
+            font-family:Segoe UI, sans-serif;
+            background:#f5f7fa;
+            color:#222;
+        }
+
+        .layout{
+            display:flex;
+            min-height:100vh;
+        }
+
+        .sidebar{
+            width:260px;
+            background:#0f172a;
+            color:white;
+            padding:25px;
+        }
+
+        .sidebar h1{
+            font-size:1.4rem;
+            margin-bottom:30px;
+        }
+
+        .sidebar ul{
+            list-style:none;
+        }
+
+        .sidebar li{
+            margin-bottom:15px;
+        }
+
+        .sidebar a{
+            color:white;
+            text-decoration:none;
+        }
+
+        .content{
+            flex:1;
+            padding:30px;
+        }
+
+        .header{
+            display:flex;
+            justify-content:space-between;
+            align-items:center;
+            margin-bottom:25px;
+        }
+
+        .dashboard-grid{
+            display:grid;
+            grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+            gap:20px;
+        }
+
+        .card{
+            background:white;
+            border-radius:15px;
+            padding:25px;
+            box-shadow:0 3px 12px rgba(0,0,0,0.08);
+        }
+
+        .card h3{
+            margin-bottom:10px;
+            color:#64748b;
+            font-size:0.95rem;
+        }
+
+        .value{
+            font-size:2rem;
+            font-weight:bold;
+        }
+
+        .positive{
+            color:#10b981;
+        }
+
+        .warning{
+            color:#f59e0b;
+        }
+
+        .negative{
+            color:#ef4444;
+        }
+
+        .charts{
+            margin-top:30px;
+            display:grid;
+            grid-template-columns:2fr 1fr;
+            gap:20px;
+        }
+
+        .chart-card{
+            background:white;
+            padding:25px;
+            border-radius:15px;
+            box-shadow:0 3px 12px rgba(0,0,0,0.08);
+        }
+
+        footer{
+            margin-top:40px;
+            text-align:center;
+            color:#64748b;
+        }
+
+        @media(max-width:900px){
+
+            .layout{
+                flex-direction:column;
+            }
+
+            .sidebar{
+                width:100%;
+            }
+
+            .charts{
+                grid-template-columns:1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="layout">
+
+    <aside class="sidebar">
+
+        <h1>🌴 Sainte-Marie</h1>
+
+        <ul>
+            <li>#Dashboard</a></li>
+            <li>pages/tourisme.htmlTourisme</a></li>
+            <li>pages/immobilier.htmlImmobilier</a></li>
+            <li>pages/climat.htmlClimat</a></li>
+            <li>pages/baleines.htmlBaleines</a></li>
+            <li>pages/opportunites.htmlOpportunités</a></li>
+            <li>pages/projections.htmlProjections 2035</a></li>
+        </ul>
+
+    </aside>
+
+    <main class="content">
+
+        <div class="header">
+
+            <div>
+                <h2>Dashboard Exécutif</h2>
+                <p>Sainte-Marie (Nosy Boraha)</p>
+            </div>
+
+            <div>
+                Octobre 2026
+            </div>
+
+        </div>
+
+        <div class="dashboard-grid">
+
+            <div class="card">
+                <h3>Score d'attractivité</h3>
+                <div class="value positive">78 / 100</div>
+            </div>
+
+            <div class="card">
+                <h3>Tourisme</h3>
+                <div class="value positive">🟢</div>
+            </div>
+
+            <div class="card">
+                <h3>Accessibilité aérienne</h3>
+                <div class="value warning">🟡</div>
+            </div>
+
+            <div class="card">
+                <h3>Immobilier</h3>
+                <div class="value positive">🟢</div>
+            </div>
+
+            <div class="card">
+                <h3>Climat</h3>
+                <div class="value warning">🟡</div>
+            </div>
+
+            <div class="card">
+                <h3>Investissements</h3>
+                <div class="value positive">🟢</div>
+            </div>
+
+        </div>
+
+        <div class="charts">
+
+            <div class="chart-card">
+
+                <h3>Historique d'attractivité</h3>
+
+                <canvas id="scoreChart"></canvas>
+
+            </div>
+
+            <div class="chart-card">
+
+                <h3>Répartition du score</h3>
+
+                <canvas id="radarChart"></canvas>
+
+            </div>
+
+        </div>
+
+        <footer>
+
+            Dashboard Sainte-Marie • Investor Edition • GitHub Pages
+
+        </footer>
+
+    </main>
+
+</div>
+
+<script>
+
+const scoreChart = new Chart(
+    document.getElementById('scoreChart'),
+    {
+        type: 'line',
+        data: {
+            labels: [
+                'Mai',
+                'Juin',
+                'Juil',
+                'Août',
+                'Sept',
+                'Oct'
+            ],
+            datasets: [{
+                label:'Attractivité',
+                data:[68,70,73,75,77,78],
+                borderColor:'#0ea5e9',
+                fill:false,
+                tension:0.3
+            }]
+        }
+    }
+);
+
+const radarChart = new Chart(
+    document.getElementById('radarChart'),
+    {
+        type:'radar',
+        data:{
+            labels:[
+              'Tourisme',
+              'Vols',
+              'Immobilier',
+              'Baleines',
+              'Climat',
+              'Investissements'
+            ],
+            datasets:[{
+                label:'Score',
+                data:[85,70,78,95,65,80],
+                backgroundColor:'rgba(14,165,233,0.2)',
+                borderColor:'#0ea5e9'
+            }]
+        }
+    }
+);
+
+</script>
+
+</body>
+</html>
