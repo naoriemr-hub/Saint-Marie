@@ -1,0 +1,43 @@
+# Annonces à surveiller. "anchor" = texte qui repère le bien dans la page
+# (utile quand une page agence liste plusieurs biens).
+# price_side: after (défaut) | before = où se trouve le prix par rapport au titre.
+# expected_price: prix vérifié à la main ; sert de contrôle anti-erreur de parsing.
+sources:
+  - id: vohilava
+    name: Villas de Vohilava (BEST IMMO)
+    url: https://www.bestimmostm.com/hotel-a-vendre-bord-de-mer-vohilava-sainte-marie/
+    anchor: Vohilava
+    expected_price: 480000
+    units: 4
+    feeds_model: true          # ce prix alimente Scenario Rachat!C5
+  - id: hotel-east
+    name: Hotel East (Ceraolo)
+    url: https://www.ceraolo-immobilier.com/achat
+    anchor: Hotel East
+    expected_price: 250000
+    units: 5
+  - id: eco-lodge-nattes
+    name: Eco-lodge Ile aux Nattes (Ceraolo)
+    url: https://www.ceraolo-immobilier.com/achat
+    anchor: Eco-lodge Iles aux Nates
+    expected_price: 450000
+    price_side: before
+    units: 6
+  - id: st-mary-resort
+    name: St Mary Tropical Resort Club (Ceraolo)
+    url: https://www.ceraolo-immobilier.com/achat
+    anchor: Tropical Resort
+    expected_price: 1260000
+    units: 16
+  - id: terrain-vohiberanto
+    name: Terrain Vohiberanto (Ceraolo, terrain nu)
+    url: https://www.ceraolo-immobilier.com/
+    anchor: Vohiberanto
+    expected_price: 250000
+    units: 0
+  - id: ravoraha
+    name: Ecolodge Le Ravoraha (annonce 2021, à reconfirmer)
+    url: https://www.koolsaina.com/petites-annonces-malgaches/55272/hotel-tres-repute-a-vendre-ile-sainte-marie-ecolodge-le-ravoraha/
+    anchor: Ravoraha
+    expected_price: 840000
+    units: 10
