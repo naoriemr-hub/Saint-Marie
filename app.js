@@ -1,0 +1,1 @@
+const ctx=document.getElementById("chart"); new Chart(ctx,{type:"line",data:{labels:["J","F","M","A"],datasets:[{label:"Attractivité",data:[72,74,76,78]}]}});
